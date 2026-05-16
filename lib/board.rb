@@ -9,7 +9,7 @@ class Board
     @round_number += 1
     new_guess = Guess.new(guess_array)
     guess_output = new_guess.guess_array # later: new_guess.colorize
-    feedback_output = @code.check(guess_array)
+    feedback_output = @code.check(guess_array) # return true if solved, pass up the chain
     new_row = BoardRow.new(@round_number, guess_output, feedback_output)
     @rows.push new_row.output
   end

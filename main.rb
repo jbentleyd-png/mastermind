@@ -1,3 +1,5 @@
+require 'colorize'
+
 require_relative 'lib/code'
 require_relative 'lib/guess'
 require_relative 'lib/board_row'
@@ -12,12 +14,19 @@ def guess_input
   guess_array
 end
 
+def play_round(code, board)
+  board.add_row(guess_input)
+  board.display
+  # return true if solved
+end
+
 def play_mastermind
   code = Code.new
   board = Board.new(code)
   board.display
-  board.add_row(guess_input)
-  board.display
+  for i in 1..12
+    play_round(code, board)
+  end
 end
 
 play_mastermind
