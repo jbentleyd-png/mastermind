@@ -27,10 +27,10 @@ class Code
     raw_output = raw_result(guess_array)
     output_message = []
     for i in 1..raw_output[0]
-      output_message.push '*'.red
+      output_message.push '*'
     end
     for i in 1..raw_output[1]
-      output_message.push '*'
+      output_message.push '*'.red
     end
     output_message.join('')
   end
