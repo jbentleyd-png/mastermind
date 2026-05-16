@@ -5,15 +5,18 @@ class Board
     @rows = ['匿匿匿匿']
   end
 
-  def add_row(guess)
+  def add_row(guess_array)
     @round_number += 1
-    guess_output = guess.colorize
-    feedback_output = @code.check(guess)
-    output = "#{round_number} #{guess_output} #{feedback_output}"
-    @rows.push output
+    new_guess = Guess.new(guess_array)
+    guess_output = new_guess.guess_array # later: new_guess.colorize
+    feedback_output = @code.check(guess_array)
+    new_row = BoardRow.new(@round_number, guess_output, feedback_output)
+    @rows.push new_row.output
   end
 
   def display
+    puts ''
+    puts 'BOARD:'
     puts @rows
   end
 end

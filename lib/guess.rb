@@ -1,11 +1,12 @@
 class Guess
-  def initialize(guess_aray)
-    @guess_array = guess_aray
-    @colorized = nil
+  attr_accessor :guess_array
+
+  def initialize(guess_array)
+    @guess_array = guess_array
     @color_code = [] # colorize gem resources here
   end
 
-  def colorize(guess_aray)
+  def colorize(guess_array)
     colorized_array = []
   end
 end

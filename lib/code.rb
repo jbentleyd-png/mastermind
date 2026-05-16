@@ -1,4 +1,6 @@
 class Code
+  attr_accessor :pegs
+
   def initialize
     @pegs = %w[R G B W]
   end
