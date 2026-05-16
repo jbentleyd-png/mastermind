@@ -5,26 +5,38 @@ class Code
     @pegs = %w[R G B W]
   end
 
-  def raw_result(guess_array)
+  def white_count(guess_array)
     true_color_false_positon = 0
-    true_color_and_position = 0
+    modifiable_pegs = @pegs
     # check white (right color, wrong spot)
     guess_array.each do |color|
-      true_color_false_positon += 1 if @pegs.include?(color)
+      if modifiable_pegs.include?(color)
+        true_color_false_positon += modifiable_pegs.count(color)
+        modifiable_pegs.delete(color)
+      end
     end
-    # check red (right color and spot)
+    puts "white : #{true_color_false_positon}"
+    true_color_false_positon
+  end
+
+  def red_white_count(white_count, guess_array)
+    true_color_and_position = 0
     guess_array.each_with_index do |color, index|
       next unless @pegs[index] == color
 
       true_color_and_position += 1
       # decrement reds from whites
-      true_color_false_positon -= 1
+      puts "red : #{true_color_and_position}"
+      white_count -= 1
     end
-    [true_color_false_positon, true_color_and_position]
+
+    puts "red : #{true_color_and_position}"
+    puts "white : #{white_count}"
+    [true_color_and_position, white_count]
   end
 
   def check(guess_array)
-    raw_output = raw_result(guess_array)
+    raw_output = red_white_count(white_count(guess_array), guess_array)
     output_message = []
     for i in 1..raw_output[0]
       output_message.push '*'
