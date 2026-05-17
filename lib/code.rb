@@ -11,18 +11,14 @@ class Code
     @solved = false
   end
 
+  def array_subtract(a, b)
+    result = a.dup
+    b.each { |color| result.delete_at(result.index(color)) if result.include?(color) }
+    result
+  end
+
   def white_count(guess_array)
-    true_color_false_positon = 0
-    modifiable_pegs = @pegs.dup # CRITICAL
-    # check white (right color, wrong spot)
-    guess_array.each do |color|
-      if modifiable_pegs.include?(color)
-        true_color_false_positon += modifiable_pegs.count(color)
-        modifiable_pegs.delete(color)
-      end
-    end
-    puts "white : #{true_color_false_positon}"
-    true_color_false_positon
+    4 - array_subtract(@pegs, guess_array).length
   end
 
   def red_white_count(white_count, guess_array)
