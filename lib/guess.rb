@@ -8,7 +8,7 @@ class Guess
       G: 'green',
       B: 'blue',
       W: 'white',
-      O: 'orange',
+      P: 'magenta',
       Y: 'yellow'
     }
   end

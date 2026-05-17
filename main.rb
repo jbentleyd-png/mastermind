@@ -5,7 +5,7 @@ require_relative 'lib/guess'
 require_relative 'lib/board_row'
 require_relative 'lib/board'
 
-ACCEPTABLE = %w[R G B W O Y].freeze
+ACCEPTABLE = %w[R G B W P Y].freeze
 
 def force_input(i)
   input = gets.chomp.upcase
