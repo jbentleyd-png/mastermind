@@ -39,7 +39,9 @@ def play_mastermind
   board.display
   for i in 1..12
     play_round(board)
+    break if code.solved == true
   end
+  puts 'YOU DID IT! YOU ARE THE CHOSEN ONE!'.blue
 end
 
 play_mastermind
