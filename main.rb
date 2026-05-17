@@ -7,15 +7,16 @@ require_relative 'lib/board'
 
 def guess_input
   guess_array = []
-  for i in 1..4
-    print "Color #{i}: "
+  for i in 0...4
+    print "Color #{i + 1}: "
     guess_array.push gets.chomp.upcase
   end
   guess_array
 end
 
-def play_round(code, board)
-  board.add_row(guess_input)
+def play_round(board)
+  guess_array = guess_input
+  board.add_row(guess_array)
   board.display
   # return true if solved
 end
@@ -25,7 +26,7 @@ def play_mastermind
   board = Board.new(code)
   board.display
   for i in 1..12
-    play_round(code, board)
+    play_round(board)
   end
 end
 

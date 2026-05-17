@@ -7,7 +7,7 @@ class Code
 
   def white_count(guess_array)
     true_color_false_positon = 0
-    modifiable_pegs = @pegs
+    modifiable_pegs = @pegs.dup # CRITICAL
     # check white (right color, wrong spot)
     guess_array.each do |color|
       if modifiable_pegs.include?(color)
@@ -22,6 +22,9 @@ class Code
   def red_white_count(white_count, guess_array)
     true_color_and_position = 0
     guess_array.each_with_index do |color, index|
+      p index
+      p @pegs[index]
+      p color
       next unless @pegs[index] == color
 
       true_color_and_position += 1
@@ -36,13 +39,14 @@ class Code
   end
 
   def check(guess_array)
-    raw_output = red_white_count(white_count(guess_array), guess_array)
+    white_count = white_count(guess_array)
+    raw_output = red_white_count(white_count, guess_array)
     output_message = []
     for i in 1..raw_output[0]
-      output_message.push '*'
+      output_message.push '*'.red
     end
     for i in 1..raw_output[1]
-      output_message.push '*'.red
+      output_message.push '*'
     end
     output_message.join('')
   end
