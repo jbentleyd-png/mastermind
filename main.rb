@@ -5,11 +5,23 @@ require_relative 'lib/guess'
 require_relative 'lib/board_row'
 require_relative 'lib/board'
 
+ACCEPTABLE = %w[R G B W O Y].freeze
+
+def force_input(i)
+  input = gets.chomp.upcase
+  until ACCEPTABLE.include?(input)
+    puts "Please input one of the fallowing: #{ACCEPTABLE}"
+    print "Color #{i + 1}: "
+    input = gets.chomp.upcase
+  end
+  input
+end
+
 def guess_input
   guess_array = []
   for i in 0...4
     print "Color #{i + 1}: "
-    guess_array.push gets.chomp.upcase
+    guess_array.push force_input(i)
   end
   guess_array
 end
