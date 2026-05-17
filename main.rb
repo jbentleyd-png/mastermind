@@ -19,7 +19,7 @@ end
 
 def guess_input
   guess_array = []
-  for i in 0...4
+  (0...4).each do |i|
     print "Color #{i + 1}: "
     guess_array.push force_input(i)
   end
@@ -37,7 +37,7 @@ def play_mastermind
   code = Code.new
   board = Board.new(code)
   board.display
-  for i in 1..12
+  12.times do
     play_round(board)
     break if code.solved == true
   end

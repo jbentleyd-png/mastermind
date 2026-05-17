@@ -2,7 +2,12 @@ class Code
   attr_accessor :pegs, :solved
 
   def initialize
-    @pegs = %w[R G B W]
+    @pegs = []
+    4.times do
+      @pegs.push ACCEPTABLE[rand(0..5)]
+    end
+    puts "CODE: #{@pegs}"
+
     @solved = false
   end
 
@@ -52,13 +57,9 @@ class Code
     raw_output = red_white_count(white_count, guess_array)
     check_win(raw_output[0])
     output_message = []
-    for i in 1..raw_output[0]
-      output_message.push '*'.red
-    end
+    (1..raw_output[0]).each { output_message.push '*'.red }
 
-    for i in 1..raw_output[1]
-      output_message.push '*'
-    end
+    (1..raw_output[1]).each { output_message.push '*' }
 
     output_message.join('')
   end
