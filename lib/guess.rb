@@ -3,10 +3,24 @@ class Guess
 
   def initialize(guess_array)
     @guess_array = guess_array
-    @color_code = [] # colorize gem resources here
+    @color_list = {
+      R: 'red',
+      G: 'green',
+      B: 'blue',
+      W: 'white',
+      O: 'orange',
+      Y: 'yellow'
+    }
   end
 
-  def colorize(guess_array)
-    colorized_array = []
+  def colorify
+    colorified_array = []
+    @guess_array.each do |color|
+      colorified_array.push color.colorize(@color_list[color.to_sym].to_sym)
+    end
+
+    output = colorified_array.join('')
+    puts output
+    output
   end
 end

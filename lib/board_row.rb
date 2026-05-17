@@ -1,7 +1,7 @@
 class BoardRow
   attr_accessor :output
 
-  def initialize(turn, guess, feedback)
-    @output = "##{turn}: #{guess} #{feedback}"
+  def initialize(turn, colorified_guess, feedback)
+    @output = "##{turn}: #{colorified_guess} #{feedback}"
   end
 end
