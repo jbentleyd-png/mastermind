@@ -11,12 +11,15 @@ class ComputerPlay
     4.times do
       guess_array.push ACCEPTABLE[rand(0..5)]
     end
+    @guessed_permutations.push guess_array
     guess_array
   end
 
-  def find_confirmed_peg
+  def find_confirmed_peg(turn)
     # walk through left to right
-    %w[R R R R]
+    @guessed_permutations.push @guessed_permutations[turn - 2].dup
+    @guessed_permutations[turn - 1][turn - 1 ] = @guessed_permutations[turn - 1][turn - 2]
+    @guessed_permutations[turn - 1]
   end
 
   def find_useful_colors
@@ -30,7 +33,7 @@ class ComputerPlay
   def execute_strategy(turn)
     return opening_guess if turn == 1
 
-    return find_confirmed_peg if @confirmed_peg[:color].nil?
+    return find_confirmed_peg(turn) if @confirmed_peg[:color].nil?
 
     return find_useful_colors if @useful_colors.length < 4
 
