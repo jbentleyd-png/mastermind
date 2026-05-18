@@ -10,7 +10,7 @@ ACCEPTABLE = %w[R G B W P Y].freeze
 def force_input(i)
   input = gets.chomp.upcase
   until ACCEPTABLE.include?(input)
-    puts "Please input one of the fallowing: #{ACCEPTABLE}"
+    puts "Please input one of the following: #{ACCEPTABLE}"
     print "Color #{i + 1}: "
     input = gets.chomp.upcase
   end
@@ -37,6 +37,8 @@ def play_mastermind
   code = Code.new
   board = Board.new(code)
   board.display
+  puts 'Let\'s play Mastermind! Try to guess the four-color code (color repeats are possible).'
+  puts "Please input 4 of the following: #{ACCEPTABLE}"
   12.times do
     play_round(board)
     break if code.solved == true
