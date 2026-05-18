@@ -55,8 +55,10 @@ module PlayerSetMode
 
   def self.play_round(board, round_number, computer)
     guess_array = guess_input(round_number, computer)
-    board.add_row(guess_array)
+    feedback_output = board.add_row(guess_array)
+    computer.take_feedback(feedback_output, round_number)
     board.display
+    feedback_output
   end
 
   def self.display_result(code)

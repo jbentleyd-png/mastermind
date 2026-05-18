@@ -19,6 +19,7 @@ class Board
     feedback_output = @code.check(guess_array)
     new_row = BoardRow.new(@round_number, guess_output, feedback_output)
     @rows.push new_row.output
+    feedback_output
   end
 
   def display

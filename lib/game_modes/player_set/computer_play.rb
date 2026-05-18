@@ -1,9 +1,17 @@
 class ComputerPlay
+  attr_accessor :feedback_log
+
   def initialize
     @useful_colors = []
     @unguessed_colors = ACCEPTABLE.dup
     @confirmed_peg = { color: nil, position: nil }
     @guessed_permutations = []
+    @feedback_log = []
+  end
+
+  def take_feedback(feedback_output, turn)
+    @feedback_log[turn - 1] = feedback_output
+    p feedback_log
   end
 
   def opening_guess
