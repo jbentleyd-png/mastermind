@@ -15,8 +15,8 @@ class Board
   def add_row(guess_array)
     @round_number += 1
     new_guess = Guess.new(guess_array)
-    guess_output = new_guess.colorify(guess_array) # later: new_guess.colorize
-    feedback_output = @code.check(guess_array) # return true if solved, pass up the chain
+    guess_output = new_guess.colorify(guess_array)
+    feedback_output = @code.check(guess_array)
     new_row = BoardRow.new(@round_number, guess_output, feedback_output)
     @rows.push new_row.output
   end

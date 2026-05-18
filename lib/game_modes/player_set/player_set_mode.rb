@@ -45,9 +45,24 @@ module PlayerSetMode
     code.chars
   end
 
+  def self.guess_input(round_number)
+    prompt = round_number < 10 ? "##{round_number}: " : "##{round_number}:"
+    guess_array = ComputerPlay.make_a_guess
+    print prompt
+    print guess_array
+    guess_array
+  end
+
+  def self.play_round(board, round_number)
+    guess_array = guess_input(round_number)
+    board.add_row(guess_array)
+    board.display
+  end
+
   def self.play_game
     code = Code.new(set_code)
     board = Board.new(code, 'set_mode')
     board.display
+    play_round(board, 1)
   end
 end
