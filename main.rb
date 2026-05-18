@@ -4,6 +4,7 @@ require_relative 'lib/shared/code'
 require_relative 'lib/shared/guess'
 require_relative 'lib/shared/board_row'
 require_relative 'lib/shared/board'
+require_relative 'lib/shared/colorable'
 require_relative 'lib/game_modes/player_guess/player_guess_mode'
 require_relative 'lib/game_modes/player_set/player_set_mode'
 
