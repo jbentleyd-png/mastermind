@@ -6,7 +6,6 @@ class Code
     4.times do
       @pegs.push ACCEPTABLE[rand(0..5)]
     end
-    puts "CODE: #{@pegs}"
 
     @solved = false
   end
@@ -24,20 +23,14 @@ class Code
   def red_white_count(white_count, guess_array)
     true_color_and_position = 0
     guess_array.each_with_index do |color, index|
-      puts "index: #{index}"
-      puts "pegs value: #{@pegs[index]}"
-      puts "color: #{color}"
       next unless @pegs[index] == color
 
       true_color_and_position += 1
       # decrement reds from whites
-      puts "red : #{true_color_and_position}"
+
       white_count -= 1
-      puts "white : #{white_count}"
     end
 
-    puts "red : #{true_color_and_position}"
-    puts "white : #{white_count}"
     [true_color_and_position, white_count]
   end
 
@@ -45,7 +38,6 @@ class Code
     return unless red_count == @pegs.length
 
     @solved = true
-    print 'Solved'
   end
 
   def check(guess_array)
