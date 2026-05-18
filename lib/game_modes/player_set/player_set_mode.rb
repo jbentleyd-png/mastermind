@@ -44,6 +44,8 @@ module PlayerSetMode
   end
 
   def self.play_game
-    set_code
+    code = set_code
+    board = Board.new(code)
+    board.display
   end
 end

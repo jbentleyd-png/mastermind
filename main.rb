@@ -1,11 +1,11 @@
 require 'colorize'
 
-require_relative 'lib/code'
-require_relative 'lib/guess'
-require_relative 'lib/board_row'
-require_relative 'lib/board'
-require_relative 'lib/player_guess_mode'
-require_relative 'lib/player_set_mode'
+require_relative 'lib/game_modes/player_guess/code'
+require_relative 'lib/shared/guess'
+require_relative 'lib/shared/board_row'
+require_relative 'lib/shared/board'
+require_relative 'lib/game_modes/player_guess/player_guess_mode'
+require_relative 'lib/game_modes/player_set/player_set_mode'
 
 ACCEPTABLE = %w[R G B W P Y].freeze
 
