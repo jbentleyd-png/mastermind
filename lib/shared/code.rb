@@ -1,12 +1,15 @@
 class Code
   attr_accessor :pegs, :solved
 
-  def initialize
+  def initialize(mode_or_array)
     @pegs = []
-    4.times do
-      @pegs.push ACCEPTABLE[rand(0..5)]
+    if mode_or_array == 'guess_mode'
+      4.times do
+        @pegs.push ACCEPTABLE[rand(0..5)]
+      end
+    else
+      @pegs = mode_or_array
     end
-
     @solved = false
   end
 

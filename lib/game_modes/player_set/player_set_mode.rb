@@ -41,10 +41,11 @@ module PlayerSetMode
     puts "Possible inputs: #{ACCEPTABLE}"
     code = force_input
     code = force_input until confirm_input?(code)
+    code.chars
   end
 
   def self.play_game
-    code = set_code
+    code = Code.new(set_code)
     board = Board.new(code)
     board.display
   end
