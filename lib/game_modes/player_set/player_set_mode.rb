@@ -45,16 +45,16 @@ module PlayerSetMode
     code.chars
   end
 
-  def self.guess_input(round_number)
+  def self.guess_input(round_number, computer)
     prompt = round_number < 10 ? "##{round_number}: " : "##{round_number}:"
-    guess_array = ComputerPlay.make_a_guess
+    guess_array = computer.execute_strategy(round_number)
     print prompt
     print guess_array
     guess_array
   end
 
-  def self.play_round(board, round_number)
-    guess_array = guess_input(round_number)
+  def self.play_round(board, round_number, computer)
+    guess_array = guess_input(round_number, computer)
     board.add_row(guess_array)
     board.display
   end
@@ -70,9 +70,10 @@ module PlayerSetMode
   def self.play_game
     code = Code.new(set_code)
     board = Board.new(code, 'set_mode')
+    computer = ComputerPlay.new
     board.display
     (1..12).each do |round_number|
-      play_round(board, round_number)
+      play_round(board, round_number, computer)
       break if code.solved == true
     end
     display_result(code)
