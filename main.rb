@@ -46,7 +46,12 @@ def play_mastermind
     play_round(board, round_number)
     break if code.solved == true
   end
-  puts 'YOU DID IT! YOU ARE THE CHOSEN ONE!'.blue
+  if code.solved == true
+    puts 'YOU DID IT! YOU ARE THE CHOSEN ONE!'.blue
+  else
+    code_output = code.pegs.join('')
+    puts "You FAIL. Code was #{code_output}.".red
+  end
 end
 
 play_mastermind
