@@ -8,6 +8,8 @@ require_relative 'lib/board'
 ACCEPTABLE = %w[R G B W P Y].freeze
 
 def input_allowed(input, allowed)
+  return false if input.length != 4
+
   input = input.chars
   difference_array = input - allowed
   difference_array.empty?
