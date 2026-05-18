@@ -2,7 +2,7 @@ class Board
   def initialize(code)
     @code = code
     @round_number = 0
-    @rows = ['匿匿匿匿']
+    @rows = ['匿匿匿匿'.light_black, "Possible inputs: #{ACCEPTABLE}"]
   end
 
   def add_row(guess_array)

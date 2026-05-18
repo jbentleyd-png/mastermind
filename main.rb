@@ -7,30 +7,32 @@ require_relative 'lib/board'
 
 ACCEPTABLE = %w[R G B W P Y].freeze
 
-def force_input(i)
+def input_allowed(input, allowed)
+  input = input.chars
+  difference_array = input - allowed
+  difference_array.empty?
+end
+
+def force_input
   input = gets.chomp.upcase
-  until ACCEPTABLE.include?(input)
-    puts "Please input one of the following: #{ACCEPTABLE}"
-    print "Color #{i + 1}: "
+  until input_allowed(input, ACCEPTABLE)
+    puts "Please input 4 of the following: #{ACCEPTABLE}"
+    print 'Guess: '
     input = gets.chomp.upcase
   end
   input
 end
 
-def guess_input
-  guess_array = []
-  (0...4).each do |i|
-    print "Color #{i + 1}: "
-    guess_array.push force_input(i)
-  end
-  guess_array
+def guess_input(round_number)
+  prompt = round_number < 10 ? "##{round_number}: " : "##{round_number}:"
+  print prompt
+  force_input.chars
 end
 
-def play_round(board)
-  guess_array = guess_input
+def play_round(board, round_number)
+  guess_array = guess_input(round_number)
   board.add_row(guess_array)
   board.display
-  # return true if solved
 end
 
 def play_mastermind
@@ -38,9 +40,8 @@ def play_mastermind
   board = Board.new(code)
   board.display
   puts 'Let\'s play Mastermind! Try to guess the four-color code (color repeats are possible).'
-  puts "Please input 4 of the following: #{ACCEPTABLE}"
-  12.times do
-    play_round(board)
+  (1..12).each do |round_number|
+    play_round(board, round_number)
     break if code.solved == true
   end
   puts 'YOU DID IT! YOU ARE THE CHOSEN ONE!'.blue
