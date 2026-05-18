@@ -1,8 +1,15 @@
 class Board
-  def initialize(code)
+  def initialize(code, mode)
     @code = code
     @round_number = 0
-    @rows = ['匿匿匿匿'.light_black, "Possible inputs: #{ACCEPTABLE}"]
+    if mode == 'guess_mode'
+      @rows = ['匿匿匿匿'.light_black]
+    elsif mode == 'set_mode'
+      code_string = code.pegs.join('')
+      colored_code = Colorable.colorify_outside_string(code_string)
+      @rows = ["[Secret code : #{colored_code}]"]
+    end
+    @rows.push "Possible inputs: #{ACCEPTABLE}"
   end
 
   def add_row(guess_array)

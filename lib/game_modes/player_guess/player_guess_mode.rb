@@ -31,7 +31,7 @@ module PlayerGuessMode
 
   def self.play_game
     code = Code.new('guess_mode')
-    board = Board.new(code)
+    board = Board.new(code, 'guess_mode')
     board.display
     puts 'Let\'s play Mastermind! Try to guess the four-color code (color repeats are possible).'
     (1..12).each do |round_number|

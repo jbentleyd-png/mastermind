@@ -30,7 +30,8 @@ module PlayerSetMode
   end
 
   def self.confirm_input?(code)
-    puts "Secret code is #{code}. Is this correct?"
+    colored_code = Colorable.colorify_outside_string(code)
+    puts "Secret code is #{colored_code}. Is this correct?"
     print 'Confirm (Y/N): '.green
     confirmation = force_y_n
     confirmation == 'Y'
@@ -46,7 +47,7 @@ module PlayerSetMode
 
   def self.play_game
     code = Code.new(set_code)
-    board = Board.new(code)
+    board = Board.new(code, 'set_mode')
     board.display
   end
 end
