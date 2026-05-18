@@ -8,4 +8,32 @@ require_relative 'lib/player_guess_mode'
 
 ACCEPTABLE = %w[R G B W P Y].freeze
 
-PlayerChoiceMode.play_game
+def startup_message
+  puts ''
+  puts ''
+  puts "\t\t\t\tMASTERMIND GAME".blue
+  puts "\t\t\t\t***************".blue
+  puts 'Would you like to be the code Guesser (input "G"), or the code Setter(input "S")?'
+  puts ''
+end
+
+def mode_ok?(mode_input) = %w[g s].include?(mode_input)
+
+def force_mode_input
+  input = gets.chomp.downcase
+  until mode_ok?(input)
+    puts "\t\t\t     Invalid input. Try again."
+    print "\t\t\t       Guesser/Setter: ".green
+    input = gets.chomp.downcase
+  end
+  input
+end
+
+def startup
+  startup_message
+  print "\t\t\t       Guesser/Setter: ".green
+  force_mode_input
+end
+
+startup
+# PlayerChoiceMode.play_game

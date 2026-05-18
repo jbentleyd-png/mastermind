@@ -1,5 +1,5 @@
 module PlayerGuessMode
-  def self.input_allowed(input, allowed)
+  def self.input_allowed?(input, allowed)
     return false if input.length != 4
 
     input = input.chars
@@ -9,7 +9,7 @@ module PlayerGuessMode
 
   def self.force_input
     input = gets.chomp.upcase
-    until input_allowed(input, ACCEPTABLE)
+    until input_allowed?(input, ACCEPTABLE)
       puts "Please input 4 of the following: #{ACCEPTABLE}"
       print 'Guess: '
       input = gets.chomp.upcase
