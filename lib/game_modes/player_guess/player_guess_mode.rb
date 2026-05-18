@@ -29,6 +29,17 @@ module PlayerGuessMode
     board.display
   end
 
+  def self.display_result(code)
+    if code.solved == true
+      puts 'YOU DID IT! YOU ARE THE CHOSEN ONE!'.blue
+    else
+      code_output = Colorable.colorify_outside_string(code.pegs.join(''))
+      print 'You FAIL. Code was '.red
+      print "'#{code_output}'"
+      puts '.'.red
+    end
+  end
+
   def self.play_game
     code = Code.new('guess_mode')
     board = Board.new(code, 'guess_mode')
@@ -38,13 +49,6 @@ module PlayerGuessMode
       play_round(board, round_number)
       break if code.solved == true
     end
-    if code.solved == true
-      puts 'YOU DID IT! YOU ARE THE CHOSEN ONE!'.blue
-    else
-      code_output = Colorable.colorify_outside_string(code.pegs.join(''))
-      print 'You FAIL. Code was '.red
-      print "'#{code_output}'"
-      puts '.'.red
-    end
+    display_result(code)
   end
 end

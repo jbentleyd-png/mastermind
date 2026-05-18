@@ -59,10 +59,22 @@ module PlayerSetMode
     board.display
   end
 
+  def self.display_result(code)
+    if code.solved == true
+      puts 'YOU LOSE! Computer guessed your code!'.red
+    else
+      puts 'YOU WIN! Computer did not guess your code!'.blue
+    end
+  end
+
   def self.play_game
     code = Code.new(set_code)
     board = Board.new(code, 'set_mode')
     board.display
-    play_round(board, 1)
+    (1..12).each do |round_number|
+      play_round(board, round_number)
+      break if code.solved == true
+    end
+    display_result(code)
   end
 end
