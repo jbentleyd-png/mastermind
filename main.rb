@@ -10,13 +10,10 @@ require_relative 'lib/player_set_mode'
 ACCEPTABLE = %w[R G B W P Y].freeze
 
 def startup_message
-  puts ''
-  puts ''
-  puts "\t\t\t\tMASTERMIND GAME".blue
+  puts "\n\n\t\t\t\tMASTERMIND GAME".blue
   puts "\t\t\t\t***************".blue
   puts 'Would you like to be the code Guesser (input "G"), or the code Setter(input "S")?'
-  puts ''
-  print "\t\t\t       Guesser/Setter: ".green
+  print "\n\t\t\t       Guesser/Setter: ".green
 end
 
 def mode_ok?(mode_input) = %w[g s].include?(mode_input)
