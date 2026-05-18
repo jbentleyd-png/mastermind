@@ -41,8 +41,10 @@ module PlayerGuessMode
     if code.solved == true
       puts 'YOU DID IT! YOU ARE THE CHOSEN ONE!'.blue
     else
-      code_output = code.pegs.join('')
-      puts "You FAIL. Code was #{code_output}.".red
+      code_output = Colorable.colorify_outside_string(code.pegs.join(''))
+      print 'You FAIL. Code was '.red
+      print "'#{code_output}'"
+      puts '.'.red
     end
   end
 end
