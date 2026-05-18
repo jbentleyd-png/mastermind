@@ -8,6 +8,7 @@ module PlayerSetMode
   end
 
   def self.force_input
+    print "\nSecret Code: ".green
     input = gets.chomp.upcase
     until input_allowed?(input)
       puts "Please input 4 of the following: #{ACCEPTABLE}"
@@ -22,27 +23,27 @@ module PlayerSetMode
   def self.force_y_n
     input = gets.chomp.upcase
     until y_n?(input)
-      print 'Confirm (Y/N): '
+      print 'Confirm (Y/N): '.green
       input = gets.chomp.upcase
     end
     input
   end
 
-  def self.input_and_confirm?
-    puts "Secret code is #{force_input}. Is this correct?"
-    print 'Confirm (Y/N): '
+  def self.confirm_input?(code)
+    puts "Secret code is #{code}. Is this correct?"
+    print 'Confirm (Y/N): '.green
     confirmation = force_y_n
     confirmation == 'Y'
   end
 
-  def self.play_game
+  def self.set_code
     puts "\n\nLet\'s play Mastermind! Create a four-color code (color repeats are possible).".blue
     puts "Possible inputs: #{ACCEPTABLE}"
-    print "\nSecret Code: ".green
-    if input_and_confirm?
-      print "Let's play, then."
-    else
-      print 'Reinput.'
-    end
+    code = force_input
+    code = force_input until confirm_input?(code)
+  end
+
+  def self.play_game
+    set_code
   end
 end
