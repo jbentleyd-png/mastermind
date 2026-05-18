@@ -19,8 +19,6 @@ class Guess
       colorified_array.push color.colorize(@color_list[color.to_sym].to_sym)
     end
 
-    output = colorified_array.join('')
-    puts output
-    output
+    colorified_array.join('')
   end
 end
