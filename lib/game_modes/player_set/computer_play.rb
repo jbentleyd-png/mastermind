@@ -32,9 +32,12 @@ class ComputerPlay
 
   def guess_final_code
     # randomize known values outside of confirmed spot
+    %w[R G B Y]
   end
 
   def execute_strategy(turn)
-    find_useful_colors unless turn > 6 || @useful_colors.length == 4
+    return find_useful_colors unless turn > 6 || @useful_colors.length == 4
+
+    guess_final_code
   end
 end
