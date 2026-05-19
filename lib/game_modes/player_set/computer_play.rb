@@ -40,6 +40,6 @@ class ComputerPlay
   end
 
   def execute_strategy(turn)
-    find_useful_colors if turn <= 6
+    find_useful_colors unless turn > 6 || @useful_colors.length == 4
   end
 end
