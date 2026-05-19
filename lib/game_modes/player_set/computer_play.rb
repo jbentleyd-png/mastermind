@@ -33,6 +33,9 @@ class ComputerPlay
   def guess_final_code
     # randomize known values outside of confirmed spot
     %w[R G B Y]
+    guess_array = @useful_colors.shuffle
+    @guessed_permutations.push guess_array
+    guess_array
   end
 
   def execute_strategy(turn)
