@@ -25,28 +25,16 @@ class ComputerPlay
     guess_array
   end
 
-  def find_confirmed_peg(turn)
-    # walk through left to right
-    @guessed_permutations.push @guessed_permutations[turn - 2].dup
-    @guessed_permutations[turn - 1][turn - 1 ] = @guessed_permutations[turn - 1][turn - 2]
-    @guessed_permutations[turn - 1]
-  end
-
   def find_useful_colors
-    # check confirmed color, non-used colors
+    opening_guess
   end
+  # check confirmed color, non-used colors
 
   def guess_final_code
     # randomize known values outside of confirmed spot
   end
 
   def execute_strategy(turn)
-    return opening_guess if turn <= 6
-
-    return find_confirmed_peg(turn) if @confirmed_peg[:color].nil?
-
-    return find_useful_colors if @useful_colors.length < 4
-
-    guess_final_code
+    find_useful_colors if turn <= 6
   end
 end
