@@ -4,6 +4,7 @@ class ComputerPlay
   def initialize
     @useful_colors = []
     @unguessed_colors = ACCEPTABLE.dup
+    p @unguessed_colors
     @confirmed_peg = { color: nil, position: nil }
     @guessed_permutations = []
     @feedback_log = []
@@ -11,15 +12,16 @@ class ComputerPlay
 
   def take_feedback(feedback_output, turn)
     @feedback_log[turn - 1] = feedback_output
-    p feedback_log
+    # p feedback_log
   end
 
   def opening_guess
     guess_array = []
-    random_color = ACCEPTABLE[rand(0..5)]
+    random_color = @unguessed_colors[rand(0...@unguessed_colors.length)]
     4.times { guess_array.push random_color }
     @guessed_permutations.push guess_array
     @unguessed_colors.delete(random_color)
+    puts "remaining colors: #{@unguessed_colors}"
     guess_array
   end
 
@@ -39,7 +41,7 @@ class ComputerPlay
   end
 
   def execute_strategy(turn)
-    return opening_guess if turn == 1
+    return opening_guess if turn <= 6
 
     return find_confirmed_peg(turn) if @confirmed_peg[:color].nil?
 
