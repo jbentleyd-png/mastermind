@@ -10,9 +10,14 @@ class ComputerPlay
     @feedback_log = []
   end
 
-  def take_feedback(feedback_output, turn)
-    @feedback_log[turn - 1] = feedback_output
-    # p feedback_log
+  def take_feedback(feedback_output, round_number)
+    @feedback_log.push feedback_output
+    puts "feedback log: #{@feedback_log}"
+    if @feedback_log[-1] != '' && round_number <= 6 # rubocop:disable Style/GuardClause
+      color_count = feedback_log[-1].count('*')
+      color_count.times { @useful_colors.push @guessed_permutations[-1][0] }
+      puts "useful colors array: #{@useful_colors}"
+    end
   end
 
   def opening_guess
