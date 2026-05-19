@@ -16,10 +16,10 @@ class ComputerPlay
 
   def opening_guess
     guess_array = []
-    4.times do
-      guess_array.push ACCEPTABLE[rand(0..5)]
-    end
+    random_color = ACCEPTABLE[rand(0..5)]
+    4.times { guess_array.push random_color }
     @guessed_permutations.push guess_array
+    @unguessed_colors.delete(random_color)
     guess_array
   end
 
