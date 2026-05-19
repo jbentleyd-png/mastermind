@@ -20,7 +20,7 @@ class ComputerPlay
     end
   end
 
-  def opening_guess
+  def find_useful_colors
     guess_array = []
     random_color = @unguessed_colors[rand(0...@unguessed_colors.length)]
     4.times { guess_array.push random_color }
@@ -29,11 +29,6 @@ class ComputerPlay
     puts "remaining colors: #{@unguessed_colors}"
     guess_array
   end
-
-  def find_useful_colors
-    opening_guess
-  end
-  # check confirmed color, non-used colors
 
   def guess_final_code
     # randomize known values outside of confirmed spot
