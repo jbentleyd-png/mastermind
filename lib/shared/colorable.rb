@@ -19,7 +19,6 @@ module Colorable
   end
 
   def colorify(white_array)
-    puts "white_array = #{white_array}"
     colorified_array = []
     white_array.each do |letter|
       colorified_array.push letter.colorize(@color_list[letter.to_sym].to_sym)
